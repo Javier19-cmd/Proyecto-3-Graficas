@@ -129,7 +129,7 @@ class Raycaster(object):
                 return d, self.map[j][i], tx
 
             #print(x, y)
-            self.point(x, y) #Dibuja el rayo.
+            #self.point(x, y) #Dibuja el rayo.
             d += 3 #Aumenta el contador.
     
     def draw_map(self): #Dibuja el mapa.
@@ -187,28 +187,28 @@ class Raycaster(object):
                             self.zbuffer[x - 500] = d 
 
     def render(self): #Dibuja el mapa.
-        self.draw_map() #Dibuja el mini mapa.
-        self.draw_player()
+        # self.draw_map() #Dibuja el mini mapa.
+        # self.draw_player()
 
-        density = 100 #Densidad de rayos.
-        #Minimapa.
-        for i in range(0, density):
-            a = self.player["a"] - self.player["fov"]/2 + self.player["fov"] * i/density 
-            d, c, tx = self.cast_ray(a)
+        # density = 100 #Densidad de rayos.
+        # #Minimapa.
+        # for i in range(0, density):
+        #     a = self.player["a"] - self.player["fov"]/2 + self.player["fov"] * i/density 
+        #     d, c, tx = self.cast_ray(a)
 
-        #Línea.
-        for i in range(0, 500):
-            self.point(499, i)
-            self.point(500, i)
-            self.point(501, i)
-            #Dibujar en 3D.
+        # #Línea.
+        # for i in range(0, 500):
+        #     self.point(499, i)
+        #     self.point(500, i)
+        #     self.point(501, i)
+        #     #Dibujar en 3D.
         
         #Pared.
-        for i in range(0, int(self.w/2)): #Sirve para dibujar las paredes.
-            a = self.player["a"] - self.player["fov"]/2 + self.player["fov"] * i/(int(self.w/2)) 
+        for i in range(0, int(self.w)): #Sirve para dibujar las paredes.
+            a = self.player["a"] - self.player["fov"]/2 + self.player["fov"] * i/(int(self.w)) 
             d, c, tx = self.cast_ray(a)
 
-            x = int(self.w/2) + i #Largo de la pared.
+            x = i #Largo de la pared.
             
             try: #Si d * cos(a - self.player["a"]) no es 0, entonces el personaje está dentro de la escena.
 
@@ -220,8 +220,8 @@ class Raycaster(object):
                 h = 0
 
             if self.zbuffer[i] >= d:
-                self.draw_stake(x, h, c, tx) #Dibuja la pared.
                 self.zbuffer[i] = d
+                self.draw_stake(x, h, c, tx) #Dibuja la pared.
 
         # for enemy in enemies:
         #     self.point(enemy["x"], enemy["y"], (255, 0, 0))
@@ -238,9 +238,9 @@ r.load_map("map.txt") #Carga el mapa.
 
 running = True
 while running: 
-    screen.fill(BLACK, (0, 0, r.w/2, r.h)) #Limpia la pantalla.
-    screen.fill(SKY, (r.w/2, 0, r.w, r.h/2)) #Llena el cielo.
-    screen.fill(GROUND, (r.w/2, r.h/2, r.w, r.h/2)) #Llena el suelo.
+    screen.fill(BLACK, (0, 0, r.w, r.h)) #Limpia la pantalla.
+    screen.fill(SKY, (r.w/1000, 0, r.w, r.h/2)) #Llena el cielo.
+    screen.fill(GROUND, (r.w/1000, r.h/2, r.w, r.h/2)) #Llena el suelo.
     # x = random.randint(0, 500) #Genera un número aleatorio entre 0 y 500.
     # y = random.randint(0, 500) #Genera un número aleatorio entre 0 y 500.
     
