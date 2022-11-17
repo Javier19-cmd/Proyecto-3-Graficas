@@ -3,12 +3,13 @@ from math import *
 
 import pygame
 from OpenGL.GL import *
+from pantalla_ganador import *
 
 BLACK = (0, 0, 0)
 WHITE = (200, 210, 220)
 RED = (255, 0, 0)
 SKY = (0, 100, 200)
-GROUND = (0, 100, 0)
+GROUND = (204, 255, 204)
 TRANSPARENT = (152, 0, 136, 255)
 
 colors = [
@@ -21,11 +22,12 @@ colors = [
 
 #Texturas de paredes.
 walls = {
-    "1": pygame.image.load("wall1.png"),
-    "2": pygame.image.load("wall2.png"),
-    "3": pygame.image.load("wall3.png"),
-    "4": pygame.image.load("wall4.png"),
-    "5": pygame.image.load("wall5.png"),
+    "1": pygame.image.load("pared1.png"),
+    "2": pygame.image.load("pared2.png"),
+    "3": pygame.image.load("pared3.png"),
+    "4": pygame.image.load("pared4.png"),
+    "5": pygame.image.load("pared5.png"),
+    "6": pygame.image.load("portón.png"),
 }
 
 #Texturas de los enemigos.
@@ -33,6 +35,7 @@ sprite1 = pygame.image.load("sprite1.png")
 sprite2 = pygame.image.load("sprite2.png")
 sprite3 = pygame.image.load("sprite3.png")
 sprite4 = pygame.image.load("sprite4.png")
+
 
 enemies = [
     {
@@ -181,10 +184,40 @@ class Raycaster(object):
                 color = sprite["sprite"].get_at((tx, ty)) #Color del sprite.
 
                 if color != TRANSPARENT: #Si el color no es transparente, entonces se dibuja el sprite.
-                    if x > 500: #Si la posicion en x del sprite es menor a 500, entonces se dibuja el sprite.
-                        if self.zbuffer[x - 500] >= d: #Si el zbuffer es igual a la distancia, entonces se dibuja el sprite.
+                    if x < 800: #Si la posicion en x del sprite es menor a 500, entonces se dibuja el sprite.
+                        if self.zbuffer[x - 800] >= d: #Si el zbuffer es igual a la distancia, entonces se dibuja el sprite.
                             self.point(x, y, color)
-                            self.zbuffer[x - 500] = d 
+                            self.zbuffer[x - 800] = d
+
+    #Método que dectecta las colisiones.
+    def collision(self, x, y):
+        i = int(x/self.blocksize)
+        j = int(y/self.blocksize)
+
+        if self.map[j][i] == ' ': #Detectando el camino.
+            print("Hay camino")
+            #pantalla_ganador() #Llamando a la pantalla de ganador.
+            #return True
+        elif self.map[j][i] == '1': #Detectando la pared.
+            print("Hay una pared")
+            #return True
+        elif self.map[j][i] == '2': #Detectando la puerta.
+            print("Hay una pared")
+            #return True
+        elif self.map[j][i] == '3': #Detectando la puerta.
+            print("Hay una pared")
+            #return True 
+        elif self.map[j][i] == '4': #Detectando la puerta.
+            print("Hay una pared")
+            #return True
+        elif self.map[j][i] == '5': #Detectando la puerta.
+            print("Hay una pared")
+            #return True
+        elif self.map[j][i] == '6': #Detectando la puerta.
+            #Probablemente se modifique después.
+            print("¡Ganaste!")
+            pantalla_ganador() #Llamando a la pantalla de ganador.
+            #return True
 
     def render(self): #Dibuja el mapa.
         # self.draw_map() #Dibuja el mini mapa.
@@ -226,56 +259,8 @@ class Raycaster(object):
         # for enemy in enemies:
         #     self.point(enemy["x"], enemy["y"], (255, 0, 0))
 
-        #Dibujando a los enemigos.
-        for enemy in enemies:
-            #print(enemy)
-            self.draw_enemies(enemy)
-
-pygame.init() #Inicializa pygame.
-screen = pygame.display.set_mode((1000, 500)) #Crea la pantalla.
-r = Raycaster(screen) #Crea el raycaster.
-r.load_map("map.txt") #Carga el mapa.
-
-running = True
-while running: 
-    screen.fill(BLACK, (0, 0, r.w, r.h)) #Limpia la pantalla.
-    screen.fill(SKY, (r.w/1000, 0, r.w, r.h/2)) #Llena el cielo.
-    screen.fill(GROUND, (r.w/1000, r.h/2, r.w, r.h/2)) #Llena el suelo.
-    # x = random.randint(0, 500) #Genera un número aleatorio entre 0 y 500.
-    # y = random.randint(0, 500) #Genera un número aleatorio entre 0 y 500.
-    
-    #r.pixel(x, y, WHITE) #Dibuja un punto blanco en la pantalla.
-    #r.point(x, y) #Dibuja un pixel blanco en la pantalla.
-    #r.block(x, y) #Dibuja un bloque blanco en la pantalla.
-    r.clearZ()
-    r.render() #Dibujando el mapa.
-    pygame.display.flip() #Actualiza la pantalla.
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT: #Si se presiona la tecla derecha.
-                r.player["x"] -= 20
-            if event.key == pygame.K_LEFT: #Si se presiona la tecla izquierda.
-                r.player["x"] += 20
-            if event.key == pygame.K_UP: #Si se presiona la tecla arriba.
-                r.player["y"] += 20
-            if event.key == pygame.K_DOWN: #Si se presiona la tecla abajo.
-                r.player["y"] -= 20
-
-            if event.key == pygame.K_a: #Si se presiona la tecla a.
-                r.player["a"] -= pi/25
-            
-            if event.key == pygame.K_d: #Si se presiona la tecla d.
-                r.player["a"] += pi/25
-
-            #Esto me lo inventé yo.
-            if event.key == pygame.K_w: #Si se presiona la tecla w.
-                r.player["y"] += int(20 * sin(r.player["a"]))
-                r.player["x"] += int(20 * cos(r.player["a"]))
-            
-            if event.key == pygame.K_s: #Si se presiona la tecla s.
-                r.player["y"] -= int(20 * sin(r.player["a"]))
-                r.player["x"] -= int(20 * cos(r.player["a"]))
+        # #Preguntarle a Dennis.
+        # #Dibujando a los enemigos.
+        # for enemy in enemies:
+        #     #print(enemy)
+        #     self.draw_enemies(enemy)
