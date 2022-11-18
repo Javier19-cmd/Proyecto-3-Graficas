@@ -94,6 +94,21 @@ def cargar_mapa():
 
                     r.player["a"] -= pi/25
                     r.collision(r.player["x"], r.player["y"])
+                
+                #Detectando si hay evento del mouse.
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                   if event.button == 1: #Si se presiona el botón izquierdo del mouse.
+                     #Detectando el movimiento del mouse, para mover la cámara.
+                        mouse_pos = pygame.mouse.get_pos()
+                        mouse_x = mouse_pos[0]
+                        mouse_y = mouse_pos[1]
+
+                        #Moviendo la cámara.
+                        if mouse_x > 400:
+                            r.player["a"] += pi/25
+                        if mouse_x < 400:
+                            r.player["a"] -= pi/25
+            
 
                 #Moverse en base a la dirección en la que se está mirando.
                 if event.key == pygame.K_UP: #Si se presiona la tecla arriba.
@@ -104,6 +119,7 @@ def cargar_mapa():
                     r.player["x"] -= cos(r.player["a"]) * 10
                     r.player["y"] -= sin(r.player["a"]) * 10
                     r.collision(r.player["x"], r.player["y"])
+
     
                 # if event.key == pygame.K_a: #Si se presiona la tecla a.
                 #     r.player["a"] -= pi/25
