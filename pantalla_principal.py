@@ -3,7 +3,7 @@ from math import *
 
 import pygame
 from OpenGL.GL import *
-from mapa import * 
+from mapa1 import * 
 
 
 def main(): #Método para hacer una pantalla principal y un botón para iniciar el juego. 

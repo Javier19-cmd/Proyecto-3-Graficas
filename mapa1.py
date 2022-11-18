@@ -4,6 +4,8 @@ from math import *
 import pygame
 from OpenGL.GL import *
 from pantalla_ganador import *
+from pantalla_perdedor import *
+from mapa2 import *
 
 BLACK = (0, 0, 0)
 WHITE = (200, 210, 220)
@@ -189,6 +191,81 @@ class Raycaster(object):
                             self.point(x, y, color)
                             self.zbuffer[x - 800] = d
 
+    def cargar_mapa2(self):
+        pygame.init() #Inicializa pygame.
+        screen2 = pygame.display.set_mode((800, 800)) #Crea la pantalla.
+        r1 = Raycaster2(screen2) #Crea el raycaster.
+        r1.load_map("map2.txt") #Carga el mapa.
+
+        running = True
+        while running: 
+            screen2.fill(BLACK, (0, 0, r1.w, r1.h)) #Limpia la pantalla.
+            screen2.fill(SKY, (r1.w/500, 0, r1.w, r1.h/2)) #Llena el cielo.
+            screen2.fill(GROUND, (r1.w/500, r1.h/2, r1.w, r1.h/2)) #Llena el suelo.
+            # x = random.randint(0, 500) #Genera un número aleatorio entre 0 y 500.
+            # y = random.randint(0, 500) #Genera un número aleatorio entre 0 y 500.
+            
+            #r.pixel(x, y, WHITE) #Dibuja un punto blanco en la pantalla.
+            #r.point(x, y) #Dibuja un pixel blanco en la pantalla.
+            #r.block(x, y) #Dibuja un bloque blanco en la pantalla.
+            r1.clearZ()
+            r1.render() #Dibujando el mapa.
+            pygame.display.flip() #Actualiza la pantalla.
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RIGHT: #Si se presiona la tecla derecha.
+                        # if r.player["a"] < 0:
+                        #     r.player["x"] += 20
+                        # else: 
+                        #     r.player["x"] -= 20
+                        r1.player["a"] += pi/25
+
+                        #r.collision(r.player["x"], r.player["y"])
+
+                    if event.key == pygame.K_LEFT: #Si se presiona la tecla izquierda.
+                        
+                        # if r.player["a"] < 0:
+                        #     r.player["x"] -= 20
+                        #     print(r.player["a"])
+                        # else:
+                        #     r.player["x"] += 20
+                        # print(r.player["a"])
+
+                        r1.player["a"] -= pi/25
+                        r1.collision(r1.player["x"], r1.player["y"])
+
+                    #Moverse en base a la dirección en la que se está mirando.
+                    if event.key == pygame.K_UP: #Si se presiona la tecla arriba.
+                        r1.player["x"] += cos(r1.player["a"]) * 10
+                        r1.player["y"] += sin(r1.player["a"]) * 10
+                        r1.collision(r1.player["x"], r1.player["y"])
+                    if event.key == pygame.K_DOWN: #Si se presiona la tecla abajo.
+                        r1.player["x"] -= cos(r1.player["a"]) * 10
+                        r1.player["y"] -= sin(r1.player["a"]) * 10
+                        r1.collision(r1.player["x"], r1.player["y"])
+        
+                    # if event.key == pygame.K_a: #Si se presiona la tecla a.
+                    #     r.player["a"] -= pi/25
+                    
+                    # if event.key == pygame.K_d: #Si se presiona la tecla d.
+                    #     r.player["a"] += pi/25
+                
+                    if event.key == pygame.K_ESCAPE: #Cerrar la ventana.
+                        running = False
+
+                    # #Esto me lo inventé yo.
+                    # if event.key == pygame.K_w: #Si se presiona la tecla w.
+                    #     r.player["y"] += int(20 * sin(r.player["a"]))
+                    #     r.player["x"] += int(20 * cos(r.player["a"]))
+                    
+                    # if event.key == pygame.K_s: #Si se presiona la tecla s.
+                    #     r.player["y"] -= int(20 * sin(r.player["a"]))
+                    #     r.player["x"] -= int(20 * cos(r.player["a"]))
+
     #Método que dectecta las colisiones.
     def collision(self, x, y):
         
@@ -198,28 +275,33 @@ class Raycaster(object):
 
         if self.map[j][i] == ' ': #Detectando el camino.
             print("Hay camino")
-            #pantalla_ganador() #Llamando a la pantalla de ganador.
             #return True
         elif self.map[j][i] == '1': #Detectando la pared.
             print("Hay una pared")
+            pantalla_perdedor() #Llamando a la pantalla de perdedor.
             #return True
         elif self.map[j][i] == '2': #Detectando la puerta.
             print("Hay una pared")
+            pantalla_perdedor() #Llamando a la pantalla de perdedor.
             #return True
         elif self.map[j][i] == '3': #Detectando la puerta.
             print("Hay una pared")
+            pantalla_perdedor() #Llamando a la pantalla de perdedor.
             #return True 
         elif self.map[j][i] == '4': #Detectando la puerta.
             print("Hay una pared")
+            pantalla_perdedor() #Llamando a la pantalla de perdedor.
             #return True
         elif self.map[j][i] == '5': #Detectando la puerta.
             print("Hay una pared")
+            pantalla_perdedor() #Llamando a la pantalla de perdedor.
             #return True
         elif self.map[j][i] == '6': #Detectando la puerta.
             #Probablemente se modifique después.
             print("¡Ganaste!")
-            pantalla_ganador() #Llamando a la pantalla de ganador.
-            return False
+            self.cargar_mapa2() #Cargando el mapa 2.
+            #pantalla_ganador() #Llamando a la pantalla de ganador.
+            #return False
 
     def render(self): #Dibuja el mapa.
         # self.draw_map() #Dibuja el mini mapa.
