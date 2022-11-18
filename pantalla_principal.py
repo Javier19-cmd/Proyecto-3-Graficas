@@ -95,29 +95,16 @@ def cargar_mapa():
                     r.player["a"] -= pi/25
                     r.collision(r.player["x"], r.player["y"])
 
+                #Moverse en base a la dirección en la que se está mirando.
                 if event.key == pygame.K_UP: #Si se presiona la tecla arriba.
-                    
-                    # if r.player["a"] < 0:
-                    #     r.player["y"] += 20
-                    # else:
-                    #     r.player["y"] += 20
-
-                    print(r.player["a"])
-                    
-                    r.player["y"] += 20
+                    r.player["x"] += cos(r.player["a"]) * 10
+                    r.player["y"] += sin(r.player["a"]) * 10
                     r.collision(r.player["x"], r.player["y"])
-
                 if event.key == pygame.K_DOWN: #Si se presiona la tecla abajo.
-                    # if r.player["a"] < 0:
-                    #     r.player["y"] -= 20
-                    # else: 
-                    #     r.player["y"] += 20
-
-                    r.player["y"] -= 20
-                    print(r.player["a"])
-
+                    r.player["x"] -= cos(r.player["a"]) * 10
+                    r.player["y"] -= sin(r.player["a"]) * 10
                     r.collision(r.player["x"], r.player["y"])
-                
+    
                 # if event.key == pygame.K_a: #Si se presiona la tecla a.
                 #     r.player["a"] -= pi/25
                 
