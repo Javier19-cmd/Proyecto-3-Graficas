@@ -30,9 +30,13 @@ def pantalla_ganador():
         pantalla.fill(CELESTE)
         
         #Colocando el texto en la pantalla.
-        pantalla.blit(texto, (100, 400))
+        pantalla.blit(texto, (300, 400))
 
         #Detectando eventos.
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 corrida = False
+
+        pygame.display.flip() #Actualiza la pantalla.
+
+#pantalla_ganador()

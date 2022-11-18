@@ -191,6 +191,8 @@ class Raycaster(object):
 
     #Método que dectecta las colisiones.
     def collision(self, x, y):
+        
+        #Calculando el tamaño del mapa.
         i = int(x/self.blocksize)
         j = int(y/self.blocksize)
 
@@ -217,7 +219,7 @@ class Raycaster(object):
             #Probablemente se modifique después.
             print("¡Ganaste!")
             pantalla_ganador() #Llamando a la pantalla de ganador.
-            #return True
+            return False
 
     def render(self): #Dibuja el mapa.
         # self.draw_map() #Dibuja el mini mapa.

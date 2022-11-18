@@ -79,9 +79,9 @@ def cargar_mapa():
                     #     r.player["x"] += 20
                     # else: 
                     #     r.player["x"] -= 20
-                    r.player["x"] -= 20
+                    r.player["a"] += pi/25
 
-                    r.collision(r.player["x"], r.player["y"])
+                    #r.collision(r.player["x"], r.player["y"])
 
                 if event.key == pygame.K_LEFT: #Si se presiona la tecla izquierda.
                     
@@ -92,7 +92,7 @@ def cargar_mapa():
                     #     r.player["x"] += 20
                     # print(r.player["a"])
 
-                    r.player["x"] += 20
+                    r.player["a"] -= pi/25
                     r.collision(r.player["x"], r.player["y"])
 
                 if event.key == pygame.K_UP: #Si se presiona la tecla arriba.
@@ -103,7 +103,7 @@ def cargar_mapa():
                     #     r.player["y"] += 20
 
                     print(r.player["a"])
-
+                    
                     r.player["y"] += 20
                     r.collision(r.player["x"], r.player["y"])
 
@@ -117,13 +117,13 @@ def cargar_mapa():
                     print(r.player["a"])
 
                     r.collision(r.player["x"], r.player["y"])
-
-                if event.key == pygame.K_a: #Si se presiona la tecla a.
-                    r.player["a"] -= pi/25
                 
-                if event.key == pygame.K_d: #Si se presiona la tecla d.
-                    r.player["a"] += pi/25
+                # if event.key == pygame.K_a: #Si se presiona la tecla a.
+                #     r.player["a"] -= pi/25
                 
+                # if event.key == pygame.K_d: #Si se presiona la tecla d.
+                #     r.player["a"] += pi/25
+            
                 if event.key == pygame.K_ESCAPE: #Cerrar la ventana.
                     running = False
 
