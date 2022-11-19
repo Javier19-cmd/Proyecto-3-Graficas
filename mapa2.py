@@ -298,8 +298,8 @@ class Raycaster2(object):
         elif self.map[j][i] == '6': #Detectando la puerta.
             #Probablemente se modifique después.
             print("¡Ganaste!")
-            self.cargar_mapa3() #Llamando al tercer mapa.
-            #pantalla_ganador() #Llamando a la pantalla de ganador.
+            #self.cargar_mapa3() #Llamando al tercer mapa.
+            pantalla_ganador() #Llamando a la pantalla de ganador.
             #return False
 
     def render(self): #Dibuja el mapa.

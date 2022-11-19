@@ -3,7 +3,7 @@ from math import *
 
 import pygame
 from OpenGL.GL import *
-from pantalla_ganador import *
+#from pantalla_ganador import *
 from pantalla_perdedor import *
 from mapa2 import *
 
