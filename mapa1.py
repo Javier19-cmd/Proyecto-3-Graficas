@@ -217,7 +217,7 @@ class Raycaster(object):
                     running = False
                 
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RIGHT: #Si se presiona la tecla derecha.
+                    if event.key == pygame.K_d: #Si se presiona la tecla derecha.
                         # if r.player["a"] < 0:
                         #     r.player["x"] += 20
                         # else: 
@@ -226,7 +226,7 @@ class Raycaster(object):
 
                         #r.collision(r.player["x"], r.player["y"])
 
-                    if event.key == pygame.K_LEFT: #Si se presiona la tecla izquierda.
+                    if event.key == pygame.K_a: #Si se presiona la tecla izquierda.
                         
                         # if r.player["a"] < 0:
                         #     r.player["x"] -= 20
@@ -239,11 +239,11 @@ class Raycaster(object):
                         r1.collision(r1.player["x"], r1.player["y"])
 
                     #Moverse en base a la dirección en la que se está mirando.
-                    if event.key == pygame.K_UP: #Si se presiona la tecla arriba.
+                    if event.key == pygame.K_w: #Si se presiona la tecla arriba.
                         r1.player["x"] += cos(r1.player["a"]) * 10
                         r1.player["y"] += sin(r1.player["a"]) * 10
                         r1.collision(r1.player["x"], r1.player["y"])
-                    if event.key == pygame.K_DOWN: #Si se presiona la tecla abajo.
+                    if event.key == pygame.K_s: #Si se presiona la tecla abajo.
                         r1.player["x"] -= cos(r1.player["a"]) * 10
                         r1.player["y"] -= sin(r1.player["a"]) * 10
                         r1.collision(r1.player["x"], r1.player["y"])

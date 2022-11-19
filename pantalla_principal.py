@@ -74,7 +74,7 @@ def cargar_mapa():
                 running = False
             
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT: #Si se presiona la tecla derecha.
+                if event.key == pygame.K_d: #Si se presiona la tecla derecha.
                     # if r.player["a"] < 0:
                     #     r.player["x"] += 20
                     # else: 
@@ -83,7 +83,7 @@ def cargar_mapa():
 
                     #r.collision(r.player["x"], r.player["y"])
 
-                if event.key == pygame.K_LEFT: #Si se presiona la tecla izquierda.
+                if event.key == pygame.K_a: #Si se presiona la tecla izquierda.
                     
                     # if r.player["a"] < 0:
                     #     r.player["x"] -= 20
@@ -111,11 +111,11 @@ def cargar_mapa():
             
 
                 #Moverse en base a la dirección en la que se está mirando.
-                if event.key == pygame.K_UP: #Si se presiona la tecla arriba.
+                if event.key == pygame.K_w: #Si se presiona la tecla arriba.
                     r.player["x"] += cos(r.player["a"]) * 10
                     r.player["y"] += sin(r.player["a"]) * 10
                     r.collision(r.player["x"], r.player["y"])
-                if event.key == pygame.K_DOWN: #Si se presiona la tecla abajo.
+                if event.key == pygame.K_s: #Si se presiona la tecla abajo.
                     r.player["x"] -= cos(r.player["a"]) * 10
                     r.player["y"] -= sin(r.player["a"]) * 10
                     r.collision(r.player["x"], r.player["y"])
