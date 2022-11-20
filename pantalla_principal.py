@@ -5,6 +5,7 @@ import pygame
 from OpenGL.GL import *
 from mapa1 import * 
 from mapa3 import *
+from mapa5 import *
 
 def main(): #Método para hacer una pantalla principal y un botón para iniciar el juego. 
     
@@ -25,6 +26,7 @@ def main(): #Método para hacer una pantalla principal y un botón para iniciar 
     fuente = pygame.font.SysFont("Arial", 30)
     texto_faciles = fuente.render("Presiona el número 1 para los niveles fáciles.", 0, (0, 0, 0))
     texto_medios = fuente.render("Presiona el número 2 para los niveles medios.", 0, (0, 0, 0))
+    texto_dificiles = fuente.render("Presiona el número 3 para los niveles difíciles.", 0, (0, 0, 0))
 
 
     #Haciendo estática la corrida.
@@ -40,6 +42,9 @@ def main(): #Método para hacer una pantalla principal y un botón para iniciar 
 
         #Niveles medios.
         pantalla.blit(texto_medios, (100, 300))
+
+        #Niveles difíciles.
+        pantalla.blit(texto_dificiles, (100, 400))
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -51,11 +56,14 @@ def main(): #Método para hacer una pantalla principal y un botón para iniciar 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
                 corrida = False
                 cargar_mapa_medio()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
+                corrida = False
+                cargar_mapa_dificil() #Cargando mapas difíciles.
 
         pygame.display.flip() #Actualiza la pantalla.
 
 
-def cargar_mapa_facil():
+def cargar_mapa_facil(): #Método para cargar los mapas fáciles.
 
     pygame.init() #Inicializa pygame.
     screen = pygame.display.set_mode((800, 800)) #Crea la pantalla.
@@ -228,6 +236,99 @@ def cargar_mapa_medio(): #Cargando los niveles medios.
                 # if event.key == pygame.K_d: #Si se presiona la tecla d.
                 #     r.player["a"] += pi/25
             
+                if event.key == pygame.K_ESCAPE: #Cerrar la ventana.
+                    running = False
+
+                # #Esto me lo inventé yo.
+                # if event.key == pygame.K_w: #Si se presiona la tecla w.
+                #     r.player["y"] += int(20 * sin(r.player["a"]))
+                #     r.player["x"] += int(20 * cos(r.player["a"]))
+                
+                # if event.key == pygame.K_s: #Si se presiona la tecla s.
+                #     r.player["y"] -= int(20 * sin(r.player["a"]))
+                #     r.player["x"] -= int(20 * cos(r.player["a"]))
+
+def cargar_mapa_dificil(): #Cargando los niveles medios.
+    
+    pygame.init() #Inicializa pygame.
+    screen5 = pygame.display.set_mode((800, 800)) #Crea la pantalla.
+    r5 = Raycaster5(screen5) #Crea el raycaster.
+    r5.load_map("map5.txt") #Carga el mapa.
+
+    running = True
+    while running: 
+        screen5.fill(BLACK, (0, 0, r5.w, r5.h)) #Limpia la pantalla.
+        screen5.fill(SKY, (r5.w/500, 0, r5.w, r5.h/2)) #Llena el cielo.
+        screen5.fill(GROUND, (r5.w/500, r5.h/2, r5.w, r5.h/2)) #Llena el suelo.
+        # x = random.randint(0, 500) #Genera un número aleatorio entre 0 y 500.
+        # y = random.randint(0, 500) #Genera un número aleatorio entre 0 y 500.
+        
+        #r.pixel(x, y, WHITE) #Dibuja un punto blanco en la pantalla.
+        #r.point(x, y) #Dibuja un pixel blanco en la pantalla.
+        #r.block(x, y) #Dibuja un bloque blanco en la pantalla.
+        r5.clearZ()
+        r5.render() #Dibujando el mapa.
+        pygame.display.flip() #Actualiza la pantalla.
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_d: #Si se presiona la tecla derecha.
+                    # if r.player["a"] < 0:
+                    #     r.player["x"] += 20
+                    # else: 
+                    #     r.player["x"] -= 20
+                    r5.player["a"] += pi/25
+
+                    #r.collision(r.player["x"], r.player["y"])
+
+                if event.key == pygame.K_a: #Si se presiona la tecla izquierda.
+                    
+                    # if r.player["a"] < 0:
+                    #     r.player["x"] -= 20
+                    #     print(r.player["a"])
+                    # else:
+                    #     r.player["x"] += 20
+                    # print(r.player["a"])
+
+                    r5.player["a"] -= pi/25
+                    r5.collision(r5.player["x"], r5.player["y"])
+                
+                #Detectando si hay evento del mouse.
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                   if event.button == 1: #Si se presiona el botón izquierdo del mouse.
+                     #Detectando el movimiento del mouse, para mover la cámara.
+                        mouse_pos = pygame.mouse.get_pos()
+                        mouse_x = mouse_pos[0]
+                        mouse_y = mouse_pos[1]
+
+                        #Moviendo la cámara.
+                        if mouse_x > 400:
+                            r5.player["a"] += pi/25
+                        if mouse_x < 400:
+                            r5.player["a"] -= pi/25
+            
+
+                #Moverse en base a la dirección en la que se está mirando.
+                if event.key == pygame.K_w: #Si se presiona la tecla arriba.
+                    r5.player["x"] += cos(r5.player["a"]) * 30
+                    r5.player["y"] += sin(r5.player["a"]) * 30
+                    r5.collision(r5.player["x"], r5.player["y"])
+                if event.key == pygame.K_s: #Si se presiona la tecla abajo.
+                    r5.player["x"] -= cos(r5.player["a"]) * 30
+                    r5.player["y"] -= sin(r5.player["a"]) * 30
+                    r5.collision(r5.player["x"], r5.player["y"])
+
+    
+                # if event.key == pygame.K_a: #Si se presiona la tecla a.
+                #     r.player["a"] -= pi/25
+                
+                # if event.key == pygame.K_d: #Si se presiona la tecla d.
+                #     r.player["a"] += pi/25
+
+                #Cerrar la ventana con la tecla ESC.
                 if event.key == pygame.K_ESCAPE: #Cerrar la ventana.
                     running = False
 
