@@ -2,6 +2,7 @@ import random
 from math import *
 
 import pygame
+from pygame.locals import *
 from OpenGL.GL import *
 from mapa1 import * 
 from mapa3 import *
@@ -69,6 +70,10 @@ def cargar_mapa_facil(): #Método para cargar los mapas fáciles.
     screen = pygame.display.set_mode((800, 800)) #Crea la pantalla.
     r = Raycaster(screen) #Crea el raycaster.
     r.load_map("map.txt") #Carga el mapa.
+
+    # #Agregando música de fondo.
+    # pygame.mixer.music.Sound("Lab.mp3")
+    # pygame.mixer.music.play(3)
 
     running = True
     while running: 
