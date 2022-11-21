@@ -19,7 +19,17 @@ Para poder seleccionar cada uno de estos niveles, es importante tomar en cuenta 
 - La tecla 2 es para seleccionar los niveles intermedios.
 - La tecla 3 es para seleccionar los niveles difíciles.
 
+# Funcionamiento de las teclas
+
+Para poderse desplazar a lo largo de los niveles, es necesario tomar en cuenta los siguientes aspectos: 
+
+- La tecla "a" es para girar la cámara del jugador hacia la izquierda. 
+- La tecla "d" es para girar la cámara del jugador hacia la derecha.
+- La tecla "w" es para desplazar hacia adelante al jugador.
+- La tecla "s" es para desplazar hacia atrás al jugador.
+
 # Funcionamiento de los niveles
 
-Al presionar el número correspondiente a cada nivel, el usuario aparecerá en el primer laberinto del nivel. Si el usuario toca una pared, esto será tomado en cuenta como perder. El usuario debe ser capaz de llegar a la meta de cada nivel sin tocar alguna pared.
+Al presionar el número correspondiente a cada nivel, el usuario aparecerá en el primer laberinto del nivel. Si el usuario toca una pared, esto será tomado en cuenta como perder. El usuario debe ser capaz de llegar a la meta de cada nivel sin tocar alguna pared. Es importante mencionar que al llegar a la meta del segundo laberinto, el usuario gana el nivel de dificultad seleccionado. Finalmente, es importante mencionar que los niveles se pueden repetir cuantas veces se desee. 
 
+Nota: en algunas ocasiones, el jugador aparecerá viendo a una pared, por lo que es recomendable y necesario girar la cámara cuantas veces sea necesario hasta ver un camino.
