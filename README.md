@@ -34,5 +34,5 @@ Al presionar el número correspondiente a cada nivel, el usuario aparecerá en e
 
 Nota: en algunas ocasiones, el jugador aparecerá viendo a una pared, por lo que es recomendable y necesario girar la cámara cuantas veces sea necesario hasta ver un camino.
 
-![images-_2_](https://user-images.githubusercontent.com/63107636/203141012-8bd2d6e3-33c1-419c-b5a4-e0216f673994.png)
+  ![images-_2_](https://user-images.githubusercontent.com/63107636/203141012-8bd2d6e3-33c1-419c-b5a4-e0216f673994.png)
 
