@@ -2,7 +2,7 @@
 
 # Descripción del proyecto
 
-El presente proyecto consiste en una serie de laberintos con diferentes niveles de dificultad: fácil, intermedio y difícil. Cada uno de los niveles posee dos laberintos diferentes, y de los cuales el segundo es más difícil que el primero. Por otro lado, es importante mencionar que al completar el segundo nivel de cada grado de dificultad, el usuario gana dicho grado de dificultad.
+El presente proyecto consiste en una serie de laberintos con diferentes niveles de dificultad: fácil, intermedio y difícil. Cada uno de los niveles posee dos laberintos diferentes, y de los cuales el segundo es más difícil que el primero. Por otro lado, es importante mencionar que al completar el segundo nivel de cada grado de dificultad, el usuario gana dicho nivel.
 
 # Funcionamiento básico
 
