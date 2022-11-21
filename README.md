@@ -1,4 +1,4 @@
-# Proyecto-3-Graficas
+# Proyecto 3 Gráficas
 
 # Descripción del proyecto
 
