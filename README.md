@@ -33,3 +33,6 @@ Para poderse desplazar a lo largo de los niveles, es necesario tomar en cuenta l
 Al presionar el número correspondiente a cada nivel, el usuario aparecerá en el primer laberinto del nivel. Si el usuario toca una pared, esto será tomado en cuenta como perder. El usuario debe ser capaz de llegar a la meta de cada nivel sin tocar alguna pared. Es importante mencionar que al llegar a la meta del segundo laberinto, el usuario gana el nivel de dificultad seleccionado. Finalmente, es importante mencionar que los niveles se pueden repetir cuantas veces se desee. 
 
 Nota: en algunas ocasiones, el jugador aparecerá viendo a una pared, por lo que es recomendable y necesario girar la cámara cuantas veces sea necesario hasta ver un camino.
+
+![images-_2_](https://user-images.githubusercontent.com/63107636/203141012-8bd2d6e3-33c1-419c-b5a4-e0216f673994.png)
+
