@@ -3,14 +3,21 @@ from math import *
 
 import pygame
 from pygame.locals import *
+from pygame import mixer
+from playsound import playsound
+import os
+import glob
 from OpenGL.GL import *
 from mapa1 import * 
 from mapa3 import *
 from mapa5 import *
 
 def main(): #Método para hacer una pantalla principal y un botón para iniciar el juego. 
+
     
     pygame.init()
+
+    cancion() #Llamando al método cancion.
 
     #Propiedades de la pantalla principal.
 
@@ -64,19 +71,38 @@ def main(): #Método para hacer una pantalla principal y un botón para iniciar 
         pygame.display.flip() #Actualiza la pantalla.
 
 
+#Canción para el nivel fácil.
+def cancion():
+    
+    pygame.init() #Inicializando pygame.
+
+    # #Agregando música de fondo.
+    mixer.init() #Inicializa mixer.
+    
+    sonido_fondo = pygame.mixer.Sound("Lab.wav")
+    pygame.mixer.Sound.play(sonido_fondo, -1) # Con -1 indicamos que queremos que se repita indefinidamente
+
 def cargar_mapa_facil(): #Método para cargar los mapas fáciles.
+
+    #os.system("Lab.mp3") #Carga la canción.
 
     pygame.init() #Inicializa pygame.
     screen = pygame.display.set_mode((800, 800)) #Crea la pantalla.
     r = Raycaster(screen) #Crea el raycaster.
     r.load_map("map.txt") #Carga el mapa.
 
-    # #Agregando música de fondo.
-    # pygame.mixer.music.Sound("Lab.mp3")
-    # pygame.mixer.music.play(3)
+    # # #Agregando música de fondo.
+    # mixer.init() #Inicializa mixer.
+    # mixer.music.load("./Lab.mp3") #Carga la música.
+    # mixer.music.play(3)
+    # mixer.music.set_volume(0.5)
+    # mixer.music.play()
+
 
     running = True
     while running: 
+        
+
         screen.fill(BLACK, (0, 0, r.w, r.h)) #Limpia la pantalla.
         screen.fill(SKY, (r.w/500, 0, r.w, r.h/2)) #Llena el cielo.
         screen.fill(GROUND, (r.w/500, r.h/2, r.w, r.h/2)) #Llena el suelo.
@@ -89,6 +115,9 @@ def cargar_mapa_facil(): #Método para cargar los mapas fáciles.
         r.clearZ()
         r.render() #Dibujando el mapa.
         pygame.display.flip() #Actualiza la pantalla.
+
+        # #Canción para el nivel fácil.
+        # playsound("./Lab.mp3")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -118,7 +147,7 @@ def cargar_mapa_facil(): #Método para cargar los mapas fáciles.
                 
                 #Detectando si hay evento del mouse.
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                   if event.button == 1: #Si se presiona el botón izquierdo del mouse.
+                       if event.button == 1: #Si se presiona el botón izquierdo del mouse.
                      #Detectando el movimiento del mouse, para mover la cámara.
                         mouse_pos = pygame.mouse.get_pos()
                         mouse_x = mouse_pos[0]

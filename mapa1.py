@@ -279,29 +279,30 @@ class Raycaster(object):
         elif self.map[j][i] == '1': #Detectando la pared.
             print("Hay una pared")
             pantalla_perdedor() #Llamando a la pantalla de perdedor.
-            #return True
+            return False
         elif self.map[j][i] == '2': #Detectando la puerta.
             print("Hay una pared")
             pantalla_perdedor() #Llamando a la pantalla de perdedor.
-            #return True
+            return False
         elif self.map[j][i] == '3': #Detectando la puerta.
             print("Hay una pared")
             pantalla_perdedor() #Llamando a la pantalla de perdedor.
-            #return True 
+            return False 
         elif self.map[j][i] == '4': #Detectando la puerta.
             print("Hay una pared")
             pantalla_perdedor() #Llamando a la pantalla de perdedor.
-            #return True
+            return False
         elif self.map[j][i] == '5': #Detectando la puerta.
             print("Hay una pared")
             pantalla_perdedor() #Llamando a la pantalla de perdedor.
-            #return True
+            return False
         elif self.map[j][i] == '6': #Detectando la puerta.
             #Probablemente se modifique después.
             print("¡Ganaste!")
             self.cargar_mapa2() #Cargando el mapa 2.
             #pantalla_ganador() #Llamando a la pantalla de ganador.
-            #return False
+            return False
+        return True
 
     def render(self): #Dibuja el mapa.
         # self.draw_map() #Dibuja el mini mapa.
