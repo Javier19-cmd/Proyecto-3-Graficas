@@ -36,6 +36,12 @@ def main(): #Método para hacer una pantalla principal y un botón para iniciar 
     texto_medios = fuente.render("Presiona el número 2 para los niveles medios.", 0, (0, 0, 0))
     texto_dificiles = fuente.render("Presiona el número 3 para los niveles difíciles.", 0, (0, 0, 0))
 
+    #Agregando contador de FPS.
+    FPS = 500
+    reloj = pygame.time.Clock()
+
+    #Texto para los FPS.
+    texto_FPS = fuente.render("FPS: ", 0, (0, 0, 0))
 
     #Haciendo estática la corrida.
     corrida = True
@@ -53,6 +59,18 @@ def main(): #Método para hacer una pantalla principal y un botón para iniciar 
 
         #Niveles difíciles.
         pantalla.blit(texto_dificiles, (100, 400))
+
+        #Agregando FPS.
+        reloj.tick(FPS)
+        fps = reloj.tick(FPS)
+        #print(reloj.tick(FPS))
+        #print(type(fps))
+        #Casteando el tipo de dato de pygame.Surface.
+        texto_FPS = fuente.render("FPS: " + str(fps), 0, (0, 0, 0))
+
+        #Poniendo el texto de los FPS.
+        pantalla.blit(texto_FPS, (350, 0))
+        #pantalla.blit(fps, (10, 0))
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -91,6 +109,12 @@ def cargar_mapa_facil(): #Método para cargar los mapas fáciles.
     r = Raycaster(screen) #Crea el raycaster.
     r.load_map("map.txt") #Carga el mapa.
 
+    fuente = pygame.font.SysFont("Arial", 30) #Fuente para el texto.
+
+    #Agregando contador de FPS.
+    FPS = 500
+    reloj = pygame.time.Clock()
+
     # # #Agregando música de fondo.
     # mixer.init() #Inicializa mixer.
     # mixer.music.load("./Lab.mp3") #Carga la música.
@@ -114,10 +138,21 @@ def cargar_mapa_facil(): #Método para cargar los mapas fáciles.
         #r.block(x, y) #Dibuja un bloque blanco en la pantalla.
         r.clearZ()
         r.render() #Dibujando el mapa.
-        pygame.display.flip() #Actualiza la pantalla.
+        #pygame.display.flip() #Actualiza la pantalla.
 
         # #Canción para el nivel fácil.
         # playsound("./Lab.mp3")
+
+        #Agregando FPS.
+        reloj.tick(FPS)
+        fps = reloj.tick(FPS)
+        #print(reloj.tick(FPS))
+        #print(type(fps))
+        #Casteando el tipo de dato de pygame.Surface.
+        texto_FPS = fuente.render("FPS: " + str(fps), 0, (0, 0, 0))
+
+        #Poniendo el texto de los FPS.
+        screen.blit(texto_FPS, (0, 0))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -188,6 +223,8 @@ def cargar_mapa_facil(): #Método para cargar los mapas fáciles.
                 # if event.key == pygame.K_s: #Si se presiona la tecla s.
                 #     r.player["y"] -= int(20 * sin(r.player["a"]))
                 #     r.player["x"] -= int(20 * cos(r.player["a"]))
+        pygame.display.flip() #Actualiza la pantalla.
+    reloj.tick(FPS) #Establece el FPS.
 
 
 def cargar_mapa_medio(): #Cargando los niveles medios.
@@ -197,6 +234,12 @@ def cargar_mapa_medio(): #Cargando los niveles medios.
     r3 = Raycaster3(screen2) #Crea el raycaster.
     r3.load_map("map3.txt") #Carga el mapa.
 
+    fuente = pygame.font.SysFont("Arial", 30) #Fuente para el texto.
+
+    #Agregando contador de FPS.
+    FPS = 500
+    reloj = pygame.time.Clock()
+
     running = True
     while running: 
         screen2.fill(BLACK, (0, 0, r3.w, r3.h)) #Limpia la pantalla.
@@ -204,13 +247,25 @@ def cargar_mapa_medio(): #Cargando los niveles medios.
         screen2.fill(GROUND, (r3.w/500, r3.h/2, r3.w, r3.h/2)) #Llena el suelo.
         # x = random.randint(0, 500) #Genera un número aleatorio entre 0 y 500.
         # y = random.randint(0, 500) #Genera un número aleatorio entre 0 y 500.
+
+        #Agregando FPS.
+        reloj.tick(FPS)
+        fps = reloj.tick(FPS)
+        #print(reloj.tick(FPS))
+        #print(type(fps))
+        #Casteando el tipo de dato de pygame.Surface.
+        texto_FPS = fuente.render("FPS: " + str(fps), 0, (0, 0, 0))
+
+        #Poniendo el texto de los FPS.
+        screen2.blit(texto_FPS, (400, 0))
+        #pantalla.blit(fps, (10, 0))
         
         #r.pixel(x, y, WHITE) #Dibuja un punto blanco en la pantalla.
         #r.point(x, y) #Dibuja un pixel blanco en la pantalla.
         #r.block(x, y) #Dibuja un bloque blanco en la pantalla.
         r3.clearZ()
         r3.render() #Dibujando el mapa.
-        pygame.display.flip() #Actualiza la pantalla.
+        #pygame.display.flip() #Actualiza la pantalla.
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -282,12 +337,21 @@ def cargar_mapa_medio(): #Cargando los niveles medios.
                 #     r.player["y"] -= int(20 * sin(r.player["a"]))
                 #     r.player["x"] -= int(20 * cos(r.player["a"]))
 
+        pygame.display.flip() #Actualiza la pantalla.
+    reloj.tick(FPS) #Establece el FPS.
+
 def cargar_mapa_dificil(): #Cargando los niveles medios.
     
     pygame.init() #Inicializa pygame.
     screen5 = pygame.display.set_mode((800, 800)) #Crea la pantalla.
     r5 = Raycaster5(screen5) #Crea el raycaster.
     r5.load_map("map5.txt") #Carga el mapa.
+
+    fuente = pygame.font.SysFont("Arial", 30) #Fuente para el texto.
+
+    #Agregando contador de FPS.
+    FPS = 500
+    reloj = pygame.time.Clock()
 
     running = True
     while running: 
@@ -302,7 +366,19 @@ def cargar_mapa_dificil(): #Cargando los niveles medios.
         #r.block(x, y) #Dibuja un bloque blanco en la pantalla.
         r5.clearZ()
         r5.render() #Dibujando el mapa.
-        pygame.display.flip() #Actualiza la pantalla.
+        #pygame.display.flip() #Actualiza la pantalla.
+
+        #Agregando FPS.
+        reloj.tick(FPS)
+        fps = reloj.tick(FPS)
+        #print(reloj.tick(FPS))
+        #print(type(fps))
+        #Casteando el tipo de dato de pygame.Surface.
+        texto_FPS = fuente.render("FPS: " + str(fps), 0, (0, 0, 0))
+
+        #Poniendo el texto de los FPS.
+        screen5.blit(texto_FPS, (400, 0))
+        #pantalla.blit(fps, (10, 0))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -374,4 +450,8 @@ def cargar_mapa_dificil(): #Cargando los niveles medios.
                 # if event.key == pygame.K_s: #Si se presiona la tecla s.
                 #     r.player["y"] -= int(20 * sin(r.player["a"]))
                 #     r.player["x"] -= int(20 * cos(r.player["a"]))
+        
+        pygame.display.flip() #Actualiza la pantalla.
+
+    reloj.tick(FPS) #Establece el FPS.
 main()

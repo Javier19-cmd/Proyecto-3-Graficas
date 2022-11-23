@@ -197,6 +197,12 @@ class Raycaster5(object):
         r6 = Raycaster6(screen2) #Crea el raycaster.
         r6.load_map("map6.txt") #Carga el mapa.
 
+        fuente = pygame.font.SysFont("Arial", 30) #Fuente para el texto.
+
+        #Agregando contador de FPS.
+        FPS = 500
+        reloj = pygame.time.Clock()
+
         running = True
         while running: 
             screen2.fill(BLACK, (0, 0, r6.w, r6.h)) #Limpia la pantalla.
@@ -210,7 +216,19 @@ class Raycaster5(object):
             #r.block(x, y) #Dibuja un bloque blanco en la pantalla.
             r6.clearZ()
             r6.render() #Dibujando el mapa.
-            pygame.display.flip() #Actualiza la pantalla.
+
+            #Agregando FPS.
+            reloj.tick(FPS)
+            fps = reloj.tick(FPS)
+            #print(reloj.tick(FPS))
+            #print(type(fps))
+            #Casteando el tipo de dato de pygame.Surface.
+            texto_FPS = fuente.render("FPS: " + str(fps), 0, (0, 0, 0))
+
+            #Poniendo el texto de los FPS.
+            screen2.blit(texto_FPS, (400, 0))
+            #pantalla.blit(fps, (10, 0))
+
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -265,6 +283,9 @@ class Raycaster5(object):
                     # if event.key == pygame.K_s: #Si se presiona la tecla s.
                     #     r.player["y"] -= int(20 * sin(r.player["a"]))
                     #     r.player["x"] -= int(20 * cos(r.player["a"]))
+        
+            pygame.display.flip() #Actualiza la pantalla.
+        reloj.tick(FPS) #FPS.
 
     #Método que dectecta las colisiones.
     def collision(self, x, y):
