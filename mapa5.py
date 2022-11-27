@@ -200,8 +200,11 @@ class Raycaster5(object):
         fuente = pygame.font.SysFont("Arial", 30) #Fuente para el texto.
 
         #Agregando contador de FPS.
-        FPS = 500
+        FPS = 50
         reloj = pygame.time.Clock()
+
+        SKY = (135, 206, 235) #Color del cielo.
+        GROUND = (150, 110, 120) #Color del suelo.
 
         running = True
         while running: 

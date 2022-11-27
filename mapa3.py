@@ -11,7 +11,7 @@ BLACK = (0, 0, 0)
 WHITE = (200, 210, 220)
 RED = (255, 0, 0)
 SKY = (0, 100, 200)
-GROUND = (204, 255, 204)
+GROUND = (0, 200, 100)
 TRANSPARENT = (152, 0, 136, 255)
 
 colors = [
@@ -199,8 +199,11 @@ class Raycaster3(object):
         fuente = pygame.font.SysFont("Arial", 30) #Fuente para el texto.
 
         #Agregando contador de FPS.
-        FPS = 500
+        FPS = 50
         reloj = pygame.time.Clock()
+
+        SKY = (100, 202, 225) #Color del cielo.
+        GROUND = (0, 200, 100) #Tipo de suelo que tendrá el mapa.
 
         running = True
         while running: 

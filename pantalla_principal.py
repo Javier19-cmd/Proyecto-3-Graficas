@@ -37,7 +37,7 @@ def main(): #Método para hacer una pantalla principal y un botón para iniciar 
     texto_dificiles = fuente.render("Presiona el número 3 para los niveles difíciles.", 0, (0, 0, 0))
 
     #Agregando contador de FPS.
-    FPS = 500
+    FPS = 50
     reloj = pygame.time.Clock()
 
     #Texto para los FPS.
@@ -112,7 +112,7 @@ def cargar_mapa_facil(): #Método para cargar los mapas fáciles.
     fuente = pygame.font.SysFont("Arial", 30) #Fuente para el texto.
 
     #Agregando contador de FPS.
-    FPS = 500
+    FPS = 50
     reloj = pygame.time.Clock()
 
     # # #Agregando música de fondo.
@@ -122,11 +122,12 @@ def cargar_mapa_facil(): #Método para cargar los mapas fáciles.
     # mixer.music.set_volume(0.5)
     # mixer.music.play()
 
+    SKY = (50, 240, 215) #Color del cielo.
+    GROUND = (140, 200, 100) #Color del suelo.
 
     running = True
     while running: 
-        
-
+    
         screen.fill(BLACK, (0, 0, r.w, r.h)) #Limpia la pantalla.
         screen.fill(SKY, (r.w/500, 0, r.w, r.h/2)) #Llena el cielo.
         screen.fill(GROUND, (r.w/500, r.h/2, r.w, r.h/2)) #Llena el suelo.
@@ -237,8 +238,11 @@ def cargar_mapa_medio(): #Cargando los niveles medios.
     fuente = pygame.font.SysFont("Arial", 30) #Fuente para el texto.
 
     #Agregando contador de FPS.
-    FPS = 500
+    FPS = 50
     reloj = pygame.time.Clock()
+
+    SKY = (100, 202, 225) #Color del cielo.
+    GROUND = (0, 200, 100) #Tipo de suelo que tendrá el mapa.
 
     running = True
     while running: 
@@ -350,8 +354,11 @@ def cargar_mapa_dificil(): #Cargando los niveles medios.
     fuente = pygame.font.SysFont("Arial", 30) #Fuente para el texto.
 
     #Agregando contador de FPS.
-    FPS = 500
+    FPS = 50
     reloj = pygame.time.Clock()
+
+    SKY = (135, 206, 235) #Color del cielo.
+    GROUND = (150, 110, 120) #Color del suelo.
 
     running = True
     while running: 
