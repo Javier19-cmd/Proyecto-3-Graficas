@@ -32,6 +32,8 @@ def main(): #Método para hacer una pantalla principal y un botón para iniciar 
 
     #Texto de la pantalla principal.
     fuente = pygame.font.SysFont("Arial", 30)
+    texto_bienveinda1 = fuente.render("Bienvenido al juego de los laberintos ", True, (0, 0, 0))
+    texto_bienveinda2 = fuente.render("a continuación puedes elegir los niveles a jugar ", True, (0, 0, 0))
     texto_faciles = fuente.render("Presiona el número 1 para los niveles fáciles.", 0, (0, 0, 0))
     texto_medios = fuente.render("Presiona el número 2 para los niveles medios.", 0, (0, 0, 0))
     texto_dificiles = fuente.render("Presiona el número 3 para los niveles difíciles.", 0, (0, 0, 0))
@@ -51,6 +53,10 @@ def main(): #Método para hacer una pantalla principal y un botón para iniciar 
         pantalla.fill(CELESTE)
         
         #Colocando el texto en la pantalla.
+        #Texto de bienvenida.
+        pantalla.blit(texto_bienveinda1, (150, 50))
+        pantalla.blit(texto_bienveinda2, (100, 100))
+
         #Niveles fáciles.
         pantalla.blit(texto_faciles, (100, 200))
 
