@@ -36,3 +36,8 @@ Nota: en algunas ocasiones, el jugador aparecerá viendo a una pared, por lo que
 
   ![images-_2_](https://user-images.githubusercontent.com/63107636/203141012-8bd2d6e3-33c1-419c-b5a4-e0216f673994.png)
 
+# Installs necesarios 
+
+playsound: pip install playsound
+
+pygame: pip install pygame
