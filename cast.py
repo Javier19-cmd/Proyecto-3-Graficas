@@ -21,11 +21,11 @@ colors = [
 
 #Texturas de paredes.
 walls = {
-    "1": pygame.image.load("wall1.png"),
-    "2": pygame.image.load("wall2.png"),
-    "3": pygame.image.load("wall3.png"),
-    "4": pygame.image.load("wall4.png"),
-    "5": pygame.image.load("wall5.png"),
+    "1": pygame.image.load("pared1.png"),
+    "2": pygame.image.load("pared2.png"),
+    "3": pygame.image.load("pared3.png"),
+    "4": pygame.image.load("pared4.png"),
+    "5": pygame.image.load("pared5.png"),
 }
 
 #Texturas de los enemigos.
