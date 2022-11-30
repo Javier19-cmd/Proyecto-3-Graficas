@@ -41,3 +41,7 @@ Nota: en algunas ocasiones, el jugador aparecerá viendo a una pared, por lo que
 playsound: pip install playsound
 
 pygame: pip install pygame
+
+# importante
+
+El archivo principal del proyecto es pantalla_principal.py. Este es el main.
